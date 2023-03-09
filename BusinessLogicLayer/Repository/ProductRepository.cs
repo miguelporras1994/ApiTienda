@@ -33,12 +33,12 @@ namespace BusinessLogicLayer.Repository
 
         public List<Product> Get()
         {
-            return _DBcontext.Products.OrderBy(x => x.Category).ToList();
+            return _DBcontext.Products.ToList();
         }
 
         public Product GetId(int id)
         {
-            return _DBcontext.Products.Where(x => x.Id == id).FirstOrDefault();  
+            return _DBcontext.Products.Where(x => x.IdProduct == id).FirstOrDefault();  
         }
 
         public void Put(Product model)

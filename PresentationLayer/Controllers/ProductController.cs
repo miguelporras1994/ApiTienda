@@ -36,15 +36,16 @@ namespace PresentationLayer.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Edit(int id, [FromBody] Product model)
         {
-            model.Id = id;
+            model.IdProduct = id;
             _Iproduct.Put(model);
             return Ok();
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
+            
             _Iproduct.Delete(id);
             return Ok();
         }
