@@ -3,6 +3,8 @@ using BusinessLogicLayer.Interface;
 using BusinessLogicLayer.Repository;
 using DataAcccesLayer.Models;
 using Microsoft.EntityFrameworkCore;
+
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddDbContext<ModelContext>( opciones => {
 });
 
 builder.Services.AddScoped<Iproduct, ProductRepository>();
+builder.Services.AddScoped<Icategory, CategoryRepository>();
 
 
 
