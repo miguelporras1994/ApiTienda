@@ -1,7 +1,9 @@
 ﻿using BusinessLogicLayer.Interface;
+using Commonlayer.Dto;
 using DataAcccesLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace PresentationLayer.Controllers
 {
@@ -24,9 +26,21 @@ namespace PresentationLayer.Controllers
 
  
         [HttpPost]
-        public ActionResult Create(Product model )
+        public ActionResult Create( [FromForm] ProductDto model )
         {
-            _Iproduct.Add(model);
+            Product product = new Product()
+            {
+                IdProduct = model.IdProduct,
+                NameProduct = model.NameProduct,
+                Price = model.Price,
+
+                Discretion = model.Discretion,
+                IdCategory = model.IdCategory,
+            };
+
+
+
+            //_Iproduct.Add(product);
             return Ok();
         }
 
@@ -34,10 +48,20 @@ namespace PresentationLayer.Controllers
 
         [HttpPut]
         [HttpPut("{id}")]
-        public async Task<ActionResult> Edit(int id, [FromBody] Product model)
+        public async Task<ActionResult> Edit(int id, [FromBody] ProductDto  model)
         {
             model.IdProduct = id;
-            _Iproduct.Put(model);
+            Product product = new Product()
+            {
+                IdProduct = model.IdProduct,
+                NameProduct = model.NameProduct,
+                Price = model.Price,
+
+                Discretion = model.Discretion,
+                IdCategory = model.IdCategory,
+            };
+
+            //_Iproduct.Put(product);
             return Ok();
         }
 

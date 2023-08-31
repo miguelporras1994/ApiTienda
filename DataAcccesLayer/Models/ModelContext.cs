@@ -17,11 +17,13 @@ public partial class ModelContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
+    public virtual DbSet<ProdcutImagen> ProdcutImagens { get; set; }
+
     public virtual DbSet<Product> Products { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-////#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-////        => optionsBuilder.UseSqlServer("Password=miguel123;Persist Security Info=True;User ID=miguel;Initial Catalog=Store;Data Source=localhost\\SQLEXPRESS ;TrustServerCertificate=True");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Password=miguel123;Persist Security Info=True;User ID=miguel;Initial Catalog=Store;Data Source=localhost\\SQLEXPRESS ;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,6 +36,13 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.NameCategory)
                 .HasMaxLength(120)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<ProdcutImagen>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__ProdcutI__3214EC0722192CF5");
+
+            entity.ToTable("ProdcutImagen");
         });
 
         modelBuilder.Entity<Product>(entity =>

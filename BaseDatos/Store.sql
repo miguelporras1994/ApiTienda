@@ -18,3 +18,11 @@ FOREIGN KEY (IdCategory) REFERENCES  Category(IdCategory),
 
 )
 
+
+create table  ProdcutImagen (
+ Id int  primary key IDENTITY(1,1)  ,
+ IdProduct  int ,
+ Urlimagen  int, 
+
+)
+
